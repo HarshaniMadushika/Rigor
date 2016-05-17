@@ -59,10 +59,21 @@
 				
 				<!-- Button (Double) -->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="submit"></label>
+				  <label class="col-md-4 control-label" for="addGrn"></label>
 				  <div class="col-md-8">
-					<button id="submit" name="submit" class="btn btn-success">Add GRN</button>
-					<button id="reset" name="reset" class="btn btn-danger">Reset</button>
+				  <c:choose>
+					<c:when test="${update}">
+						<input type="submit" value="UpdateGrn" class="btn btn-success" />
+						
+					</c:when>
+					<c:otherwise>
+						<input type="submit" value="AddProduct" class="btn btn-success" />
+						
+					</c:otherwise>
+				</c:choose>
+					<input type="Reset" value="Clear"class="btn btn-primary" />
+			
+					
 				  </div>
 				</div>
 

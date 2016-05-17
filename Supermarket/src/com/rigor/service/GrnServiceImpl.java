@@ -1,5 +1,6 @@
 package com.rigor.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,20 @@ public class GrnServiceImpl implements GrnService {
 		return grns;
 		
 	}
+
+/*	@Override
+	public List<Grn> getAllGrn() {
+		List<GrnDAO> grnDAOs = new ArrayList<GrnDAO>();
+		List<Grn> grn_ = grnDAO.findAll();
+		if (grn_ != null && !grn_.isEmpty()) {
+			for (Grn grn : grn_) {
+				GrnDAO grnDAO = new GrnDAO();
+				grnDAOs.add(grnDAO);
+			}
+		}
+		return grnDAOs;
+	}
+*/
 
 	@Override
 	public void deleteGrn(int id) {

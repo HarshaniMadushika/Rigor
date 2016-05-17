@@ -26,8 +26,8 @@ public class GrnController {
 	private GrnService grnService;
 	
 	@RequestMapping(value = "/listGrn", method = RequestMethod.GET)
-	public ModelAndView placeGrn() {
-		return new ModelAndView("place-grn", "grns", grnService.getAllGrn());
+	public ModelAndView ListGrn() {
+		return new ModelAndView("list-Grn", "grns", grnService.getAllGrn());
 		
 
 	}
@@ -37,13 +37,13 @@ public class GrnController {
 	public ModelAndView modifyGrn(Grn grnDTO,
 			BindingResult result) {
 
-		return new ModelAndView("place-grn");
+		return new ModelAndView("list-Grn");
 
 	}
 	@RequestMapping(value = "/editGrn", method = RequestMethod.GET)
 	public String editPage(ModelMap modelMap, HttpServletRequest request) {
 		int grnId = Integer.parseInt(request.getParameter("id"));
-		modelMap.addAttribute("grn", grnService.getGrn(grnId));
+		modelMap.addAttribute("grns", grnService.getGrn(grnId));
 		modelMap.addAttribute("update", true);
 		return "place-grn";
 	}
@@ -52,14 +52,14 @@ public class GrnController {
 	public ModelAndView deleteProduct(HttpServletRequest request) {
 		int grnId = Integer.parseInt(request.getParameter("id"));
 		grnService.deleteGrn(grnId);
-		return new ModelAndView("place-grn", "grns",
+		return new ModelAndView("list-Grn", "grns",
 				grnService.getAllGrn());
 
 	}
 
 	@RequestMapping(value = "/addGrn", method = RequestMethod.POST)
 	public ModelAndView addGrn(Grn grnDTO, BindingResult result) {
-		ModelAndView modelAndView = new ModelAndView("place-grn");
+		ModelAndView modelAndView = new ModelAndView("list-Grn");
 		if (grnDTO.getGrnID() > 0) {
 			// update
 			grnService.update(grnDTO);
