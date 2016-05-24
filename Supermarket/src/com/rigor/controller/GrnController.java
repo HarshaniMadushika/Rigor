@@ -27,14 +27,14 @@ public class GrnController {
 	
 	@RequestMapping(value = "/listGrn", method = RequestMethod.GET)
 	public ModelAndView ListGrn() {
-		return new ModelAndView("list-Grn", "grns", grnService.getAllGrn());
+		return new ModelAndView("list-Grn", "grnList", grnService.getAllGrn());
 		
 
 	}
 	
 	
 	@RequestMapping(value = "modifyGrn")
-	public ModelAndView modifyGrn(Grn grnDTO,
+	public ModelAndView modifyGrn(Grn grnE,
 			BindingResult result) {
 
 		return new ModelAndView("list-Grn");
@@ -58,23 +58,28 @@ public class GrnController {
 	}
 
 	@RequestMapping(value = "/addGrn", method = RequestMethod.POST)
-	public ModelAndView addGrn(Grn grnDTO, BindingResult result) {
+	public ModelAndView addGrn(Grn grnE, BindingResult result) {
+		System.out.println("a");
 		ModelAndView modelAndView = new ModelAndView("list-Grn");
-		if (grnDTO.getGrnID() > 0) {
+		System.out.println("b");
+		if (grnE.getGrnID() > 0) {
 			// update
-			grnService.update(grnDTO);
+			grnService.update(grnE);
+			System.out.println("c");
 		} else {
 			// add product
-			grnService.saveGrn(grnDTO);
+			grnService.saveGrn(grnE);
+			System.out.println("d");
 		}
 		modelAndView.addObject("grns", new Grn());
-		System.out.println(grnDTO.getGrnID());
+		System.out.println("e");
+		System.out.println(grnE.getGrnID());
 		return modelAndView;
 	}
 	@RequestMapping(value = "/addGrn", method = RequestMethod.GET)
 	public String addGrn(ModelMap modelMap) {
 		modelMap.addAttribute("grns", new Grn());
-		//modelMap.addAttribute("update", false);
+		modelMap.addAttribute("update", false);
 		return "place-grn";
 
 	}

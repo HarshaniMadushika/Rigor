@@ -48,15 +48,15 @@
 					<th>Unit Price (Buying)</th>
 					
 				</tr>
-				<c:if test="${!empty grnService}">
-				<c:forEach items="${grnService}" var="grns">
+				<c:if test="${!empty grnList}">
+				<c:forEach items="${grnList}" var="grnlist">
 					<tr bgcolor="#E1E1E1">
-						<td>${grns.supplierName}</td>
-						<td>${grns.productName}</td>
-						<td>${grns.quantity}</td>
-						<td>${grns.unitPrice}</td>
-						<td><a href="<c:url value='editGrn?id=${grns.grnID}'/>"> <button id="editGrn" name="editGrn" class="btn btn-success">Edit</button></a>
-							<a href="<c:url value='deleteGrn?id=${grns.grnID}'/>"><button id="deleteGrn" name="deleteGrn" class="btn btn-danger">Delete</button></a>
+						<td>${grnlist.supplierName}</td>
+						<td>${grnlist.productName}</td>
+						<td>${grnlist.quantity}</td>
+						<td>${grnlist.unitPrice}</td>
+						<td><a href="<c:url value='editGrn?id=${grnlist.grnID}'/>"> <button id="editGrn" name="editGrn" class="btn btn-success">Edit</button></a>
+							<a href="<c:url value='deleteGrn?id=${grnlist.grnID}'/>"><button id="deleteGrn" name="deleteGrn" class="btn btn-danger">Delete</button></a>
 							</td>
 					</tr>
 
