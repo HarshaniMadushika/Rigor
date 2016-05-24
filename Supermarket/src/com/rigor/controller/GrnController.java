@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.rigor.dao.GrnDAO;
 import com.rigor.entity.Grn;
 import com.rigor.service.GrnService;
 
 @Controller
 @RequestMapping("/")
 public class GrnController {
-	private List<Grn> grnList = new ArrayList<>();
+	private List<Grn> grn_list = new ArrayList<>();
 	
 	@Autowired
 	private GrnService grnService;
@@ -57,31 +57,32 @@ public class GrnController {
 
 	}
 
-	@RequestMapping(value = "/addGrn", method = RequestMethod.POST)
-	public ModelAndView addGrn(Grn grnE, BindingResult result) {
-		System.out.println("a");
-		ModelAndView modelAndView = new ModelAndView("list-Grn");
-		System.out.println("b");
-		if (grnE.getGrnID() > 0) {
-			// update
-			grnService.update(grnE);
-			System.out.println("c");
-		} else {
-			// add product
-			grnService.saveGrn(grnE);
-			System.out.println("d");
-		}
-		modelAndView.addObject("grns", new Grn());
-		System.out.println("e");
-		System.out.println(grnE.getGrnID());
-		return modelAndView;
-	}
+
 	@RequestMapping(value = "/addGrn", method = RequestMethod.GET)
 	public String addGrn(ModelMap modelMap) {
 		modelMap.addAttribute("grns", new Grn());
 		modelMap.addAttribute("update", false);
 		return "place-grn";
 
+	}
+
+	@RequestMapping(value = "/addGrn")
+	public ModelAndView addGrn(Grn grnE, BindingResult result) {
+		
+		ModelAndView modelAndView = new ModelAndView("list-Grn");
+		
+		if (grnE.getGrnID() > 0) {
+			// update
+			grnService.update(grnE);
+			
+		} else {
+			// add product
+			grnService.saveGrn(grnE);
+			
+		}
+		modelAndView.addObject("grnList", grnService.getAllGrn());
+		System.out.println(grnE.getGrnID());
+		return modelAndView;
 	}
 
 }
