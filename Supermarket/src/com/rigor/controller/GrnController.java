@@ -52,7 +52,7 @@ public class GrnController {
 	public ModelAndView deleteProduct(HttpServletRequest request) {
 		int grnId = Integer.parseInt(request.getParameter("id"));
 		grnService.deleteGrn(grnId);
-		return new ModelAndView("list-Grn", "grns",
+		return new ModelAndView("list-Grn", "grnList",
 				grnService.getAllGrn());
 
 	}
